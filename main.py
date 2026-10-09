@@ -4,16 +4,18 @@ import random
 
 from entity import Entity
 from projectile import Projectile
+from enemy import Enemy
 
 # Значения
 WIDTH = 1000
 HEIGHT = 800
 CEIL = 10
-FPS = 60
+FPS = 30
 
 C_RED = (255, 0, 0)
 C_BLACK = (0, 0, 0)
 C_GREEN = (0, 255, 0)
+C_BLUE = (0, 0, 255)
 
 # Настройки
 pygame.init()
@@ -40,6 +42,9 @@ while run:
                 Player.y -= 1
             elif event.key == pygame.K_s:
                 Player.y += 1
+
+            if event.key == pygame.K_SPACE:
+                Enemy(random.randint(0, WIDTH), random.randint(0, HEIGHT), 1/8)
             
             # Стрельба
             if event.key == pygame.K_LEFT:
@@ -51,12 +56,19 @@ while run:
             elif event.key == pygame.K_DOWN:
                 Projectile(Player.x, Player.y, (0, 1), 1/16)
 
+    for enm in Enemy.ALL:
+        enm.x += (Player.x - enm.x)/enm.x * enm.speed
+        enm.y += (Player.y - enm.y)/enm.y * enm.speed
+
+        pygame.draw.rect(screen, C_BLUE, (enm.x*CEIL, enm.y*CEIL, CEIL, CEIL))
+        print(f"ID: {enm.id}, x: {enm.x}, y: {enm.y}")
+    
     for pr in Projectile.ALL:
         pr.x += pr.impulse[0] * CEIL * pr.speed
         pr.y += pr.impulse[1] * CEIL * pr.speed
 
         pygame.draw.rect(screen, C_GREEN, (pr.x*CEIL, pr.y*CEIL, CEIL, CEIL))
-        print(f"ID: {pr.id}, x: {pr.x}, y: {pr.y}")
+        # print(f"ID: {pr.id}, x: {pr.x}, y: {pr.y}")
 
     pygame.draw.rect(screen, C_RED, (Player.x*CEIL, Player.y*CEIL, CEIL, CEIL))
     pygame.display.update()
