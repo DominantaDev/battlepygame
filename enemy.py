@@ -1,16 +1,6 @@
-class Enemy:
-    ID = 0
-    ALL = []
+from vector2 import Vector2
+from entity import Entity
 
-    id = 0
-    x, y = 0, 0
-    speed = 0
-
-    def __init__(self, x, y, speed):
-        self.x = x
-        self.y = y
-        self.speed = speed
-        self.id = Enemy.ID
-
-        Enemy.ID += 1
-        Enemy.ALL.append(self)
+class Enemy(Entity):
+    def __init__(self, pos: Vector2, speed):
+        super().__init__(pos, speed)

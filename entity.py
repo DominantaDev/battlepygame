@@ -1,17 +1,10 @@
-class Entity:
-    ALL = []
+from vector2 import Vector2
+from object import Object
 
-    x = 0
-    y = 0
-    id = 0
+class Entity(Object):
+    speed: int
 
-    ID = 0
+    def __init__(self, pos, speed):
+        super().__init__(pos)
 
-    def __init__(self, x, y):
-        self.id = Entity.ID
-        self.x = x
-        self.y = y
-
-        Entity.ID += 1
-
-        Entity.ALL.append(self)
+        self.speed = speed

@@ -1,19 +1,10 @@
-class Projectile:
-    ALL = []
+from vector2 import Vector2
+from entity import Entity
 
-    x, y = 0, 0
-    id = 0
-    speed = 0
+class Projectile(Entity):
     impulse = (0, 0)
 
-    ID = 0
-
-    def __init__(self, x, y, impulse, speed):
-        self.x, self.y = x, y
+    def __init__(self, pos: Vector2, impulse: Vector2, speed):
+        super().__init__(pos, speed)
+        
         self.impulse = impulse
-        self.id = Projectile.ID
-        self.speed = speed
-
-        Projectile.ID += 1
-
-        Projectile.ALL.append(self)
