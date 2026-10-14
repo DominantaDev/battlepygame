@@ -1,19 +1,22 @@
-from vector2 import Vector2
+from vector2 import *
+import consts
 
 class Object:
     id_g: int
     id: int
     pos: Vector2
+    color: tuple
 
     ID: int = 0
     ALL = []
 
-    def __init__(self, pos: Vector2):
+    def __init__(self, pos=VectorZero, color=consts.WHITE):
         cls = type(self)
 
         self.id = cls.ID
         self.id_g = Object.ID
         self.pos = pos
+        self.color = color
 
         cls.ID += 1
         cls.ALL.append(self)

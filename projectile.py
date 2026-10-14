@@ -1,10 +1,11 @@
-from vector2 import Vector2
-from entity import Entity
+from vector2 import *
+import consts
+from moveable_object import MoveableObject
 
-class Projectile(Entity):
-    impulse = (0, 0)
+class Projectile(MoveableObject):
+    impulse: Vector2
 
-    def __init__(self, pos: Vector2, impulse: Vector2, speed):
-        super().__init__(pos, speed)
-        
+    def __init__(self, pos: Vector2 = VectorZero, impulse: Vector2 = VectorZero, speed: int = 20):
+        super().__init__(pos=pos, speed=speed, color=consts.GREEN)
+
         self.impulse = impulse
