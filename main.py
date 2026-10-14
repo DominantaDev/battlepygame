@@ -9,7 +9,8 @@ from entity import Entity
 from projectile import Projectile
 from enemy import Enemy
 from vector2 import *
-from enums import *
+from player import Player
+from moveable_object import MoveableObject
 
 # Значения
 WIDTH = 1000
@@ -23,7 +24,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('ZMEYAAAA')
 clock = pygame.time.Clock()
 
-Player = Entity(VectorZero, 2)
+player = Player()
 
 # Основной цикл
 run = True
@@ -38,29 +39,30 @@ while run:
         if event.type == pygame.KEYDOWN:
             # # Ходьба
             # if event.key == pygame.K_a:
-            #     Player.pos += VectorLeft * Player.speed
+            #     player.pos += VectorLeft * player.speed
             # elif event.key == pygame.K_d:
-            #     Player.pos += VectorRight * Player.speed
+            #     player.pos += VectorRight * player.speed
             # elif event.key == pygame.K_w:
-            #     Player.pos += VectorUp * Player.speed
+            #     player.pos += VectorUp * player.speed
             # elif event.key == pygame.K_s:
-            #     Player.pos += VectorDown * Player.speed
+            #     player.pos += VectorDown * player.speed
 
             if event.key == pygame.K_SPACE:
-                Enemy(Vector2(random.randint(0, WIDTH), random.randint(0, HEIGHT)), 10)
+                Enemy(Vector2(random.randint(0, WIDTH), random.randint(0, HEIGHT)), target=player)
             
             # Стрельба
             if event.key == pygame.K_LEFT:
-                Projectile(Player.pos, VectorLeft, 1/16)
+                Projectile(player.pos, VectorLeft, 50)
             elif event.key == pygame.K_RIGHT:
-                Projectile(Player.pos, VectorRight, 1/16)
+                Projectile(player.pos, VectorRight, 50)
             elif event.key == pygame.K_UP:
-                Projectile(Player.pos, VectorUp, 1/16)
+                Projectile(player.pos, VectorUp, 50)
             elif event.key == pygame.K_DOWN:
-                Projectile(Player.pos, VectorDown, 1/16)
+                Projectile(player.pos, VectorDown, 50)
     
     for pr in Projectile.ALL:
-        pr.pos += pr.impulse * world.dt
+        pr.pos += pr.impulse * world.dt * pr.speed
+        pygame.draw.rect(screen, pr.color, (pr.pos.x, pr.pos.y, CEIL, CEIL))
 
     for ent in Entity.ALL:
         # _action = ent.action_update(pygame.time.get_ticks())

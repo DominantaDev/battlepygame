@@ -1,7 +1,6 @@
 from entity import Entity
-from enums import Action
 from input_event import InputEvent
-from vector2 import Vector2
+from vector2 import *
 
 import consts
 import pygame
@@ -12,10 +11,11 @@ InputEvent("move_y", pygame.K_s, pygame.K_w)
 class Player(Entity):
     def __init__(self):
         super().__init__(
+            pos=VectorZero,
             buffer_actions=[],
             color=consts.RED,
-            speed=25
+            speed=100
         )
 
     def action_update(self, millsecs):
-        self.Move(Vector2(InputEvent.getAxis("move_x", pygame.event), InputEvent.getAxis("move_y", pygame.event)))
+        self.Move(Vector2(InputEvent.getAxis("move_x"), InputEvent.getAxis("move_y")))
