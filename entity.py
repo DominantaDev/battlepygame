@@ -6,6 +6,8 @@ import consts
 
 from projectile import Projectile
 
+doll = MoveableObject()
+
 class Entity(MoveableObject):
     hp: int
     speed: int
@@ -21,7 +23,7 @@ class Entity(MoveableObject):
                 hp=100, 
                 buffer_actions=[],
                 update_delta=3000,
-                target = world.doll,
+                target = doll,
                 color: tuple = consts.WHITE
                 ):
         super().__init__(pos, speed, color)
