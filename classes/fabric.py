@@ -18,10 +18,11 @@ class Fabric:
         obj = Object()
         obj.AddComponents([
             Transform(Vector2(WIDTH//2, HEIGHT//2), Vector2(CEIL, CEIL)),
-            Movement(200),
+            Movement(400),
             HP(100),
             Input(),
-            Render(GREEN)
+            Render(GREEN),
+            Velocity(Vector2(0, 0))
         ])
         return obj
 
@@ -30,10 +31,11 @@ class Fabric:
         obj.AddComponents([
             Transform(Vector2.Randomize(
                 0, 1, [WIDTH, HEIGHT]), Vector2(CEIL, CEIL)),
-            Movement(150),
+            Movement(300),
             HP(40),
             Render(RED),
-            AI(200, [player_obj])
+            AI(200, [player_obj]),
+            Velocity(Vector2(0, 0))
         ])
         return obj
 

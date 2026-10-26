@@ -12,7 +12,7 @@ class InputSystem(System):
             entity: Object
     ):
         inp_comp = entity.GetComponent(Input)
-        vel_comp = entity.UpdateComponent(Velocity)
+        vel_comp = entity.GetComponent(Velocity)
 
         if None in (inp_comp, vel_comp):
             return

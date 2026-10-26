@@ -2,6 +2,7 @@
 import pygame
 from classes.fabric import Fabric
 from classes.object import Object
+from components.velocity import Velocity
 import consts
 from input_event import InputEvent
 from systems.ai_system import AISystem
@@ -28,11 +29,11 @@ InputEvent("move_y", pygame.K_s, pygame.K_w)
 
 # Основной цикл
 run = True
-dt = 0
+world.dt = 0
 
 start_game_time = pygame.time.get_ticks()
 while run:
-    dt = clock.tick(world.FPS) / 1000
+    world.dt = clock.tick(world.FPS) / 1000
     timers_exit = Timer.UpdateAll(start_game_time-pygame.time.get_ticks())
     # Обработка эвентов
     for event in pygame.event.get():
