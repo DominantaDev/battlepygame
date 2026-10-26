@@ -8,6 +8,7 @@ from projectile import Projectile
 
 doll = MoveableObject()
 
+
 class Entity(MoveableObject):
     hp: int
     speed: int
@@ -17,15 +18,15 @@ class Entity(MoveableObject):
     last_action = 0
     target: Vector2
 
-    def __init__(self, 
-                pos=VectorZero, 
-                speed=20, 
-                hp=100, 
-                buffer_actions=[],
-                update_delta=3000,
-                target = doll,
-                color: tuple = consts.WHITE
-                ):
+    def __init__(self,
+                 pos=None,
+                 speed=20,
+                 hp=100,
+                 buffer_actions=[],
+                 update_delta=3000,
+                 target=doll,
+                 color: tuple = consts.WHITE
+                 ):
         super().__init__(pos, speed, color)
 
         self.speed = speed
@@ -56,7 +57,8 @@ class Entity(MoveableObject):
 
     def Chase(self):
         self.Move(self.target.pos-self.pos)
-        print(f"{type(self)} ({self.id}) преследует {type(self.target)} ({self.target.pos})")
+        print(
+            f"{type(self)} ({self.id}) преследует {type(self.target)} ({self.target.pos})")
 
     def Shoot(self):
         Projectile(self.pos, (self.target.pos-self.pos).norm(), 300)

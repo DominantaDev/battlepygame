@@ -3,7 +3,8 @@ import pygame
 import random
 import math
 import consts
-import world
+from input_event import InputEvent
+from world import *
 
 from entity import Entity
 from projectile import Projectile
@@ -11,12 +12,6 @@ from enemy import Enemy
 from vector2 import *
 from player import Player
 from moveable_object import MoveableObject
-
-# Значения
-WIDTH = 1000
-HEIGHT = 800
-CEIL = 10
-FPS = 30
 
 # Настройки
 pygame.init()
@@ -26,12 +21,15 @@ clock = pygame.time.Clock()
 
 player = Player()
 
+InputEvent("move_x", pygame.K_d, pygame.K_a)
+InputEvent("move_y", pygame.K_s, pygame.K_w)
+
 # Основной цикл
 run = True
-world.dt = 0
+dt = 0
 
 while run:
-    world.dt = clock.tick(FPS) / 1000
+    dt = clock.tick(FPS) / 1000
     # Обработка эвентов
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -48,20 +46,21 @@ while run:
             #     player.pos += VectorDown * player.speed
 
             if event.key == pygame.K_SPACE:
-                Enemy(Vector2(random.randint(0, WIDTH), random.randint(0, HEIGHT)), target=player)
-            
+                Enemy(Vector2(random.randint(0, WIDTH),
+                      random.randint(0, HEIGHT)), target=player)
+
             # Стрельба
             if event.key == pygame.K_LEFT:
-                Projectile(player.pos, VectorLeft, 50)
+                Projectile(player.pos, Vector2(-1, 0), 50)
             elif event.key == pygame.K_RIGHT:
-                Projectile(player.pos, VectorRight, 50)
+                Projectile(player.pos, Vector2(1, 0), 50)
             elif event.key == pygame.K_UP:
-                Projectile(player.pos, VectorUp, 50)
+                Projectile(player.pos, Vector2(0, -1), 50)
             elif event.key == pygame.K_DOWN:
-                Projectile(player.pos, VectorDown, 50)
-    
+                Projectile(player.pos, Vector2(0, 1), 50)
+
     for pr in Projectile.ALL:
-        pr.pos += pr.impulse * world.dt * pr.speed
+        pr.pos += pr.impulse * dt * pr.speed
         pygame.draw.rect(screen, pr.color, (pr.pos.x, pr.pos.y, CEIL, CEIL))
 
     for ent in Entity.ALL:
@@ -77,7 +76,7 @@ while run:
         ent.action_update(pygame.time.get_ticks())
 
         pygame.draw.rect(screen, ent.color, (ent.pos.x, ent.pos.y, CEIL, CEIL))
-    
+
     # Cycle-end
     pygame.display.update()
     screen.fill(consts.BLACK)

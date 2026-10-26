@@ -1,7 +1,8 @@
 from system import System
 from classes.object import Object
 from components.damage import Damage
-from components.damage import HP
+from components.hp import HP
+
 
 class DamageSystem(System):
     def DamageRegistry(

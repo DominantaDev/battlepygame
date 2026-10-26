@@ -1,6 +1,7 @@
 import math
 import random
 
+
 class Vector2:
     x: float = 0
     y: float = 0
@@ -24,14 +25,14 @@ class Vector2:
 
     def __add__(self, vec):
         return Vector2(self.x + vec.x, self.y + vec.y)
-    
+
     def __sub__(self, vec):
         return Vector2(self.x - vec.x, self.y - vec.y)
 
     def __mul__(self, scalar: float):
         return Vector2(self.x * scalar, self.y * scalar)
 
-    def __rmul__ (self, scalar: float):
+    def __rmul__(self, scalar: float):
         return self*scalar
 
     def __truediv__(self, scalar: float):
@@ -41,11 +42,9 @@ class Vector2:
         return Vector2(self.x // scalar, self.y // scalar)
 
     @staticmethod
-    def Randomize():
-        return Vector2(random.randint(-1, 1), random.randint(-1, 1))
-
-VectorZero = Vector2(0, 0)
-VectorUp = Vector2(0, -1)
-VectorDown = Vector2(0, 1)
-VectorLeft = Vector2(-1, 0)
-VectorRight = Vector2(1, 0)
+    def Randomize(
+        a: int = -1,
+        b: int = 1,
+        mult: list[int] = [1, 1]
+    ):
+        return Vector2(random.randint(a*mult[0], b*mult[0])/mult[0], random.randint(a*mult[1], b*mult[1])/mult[1])

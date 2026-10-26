@@ -8,14 +8,16 @@ import pygame
 InputEvent("move_x", pygame.K_d, pygame.K_a)
 InputEvent("move_y", pygame.K_s, pygame.K_w)
 
+
 class Player(Entity):
     def __init__(self):
         super().__init__(
-            pos=VectorZero,
+            pos=None,
             buffer_actions=[],
             color=consts.RED,
             speed=100
         )
 
     def action_update(self, millsecs):
-        self.Move(Vector2(InputEvent.getAxis("move_x"), InputEvent.getAxis("move_y")))
+        self.Move(Vector2(InputEvent.getAxis("move_x"),
+                  InputEvent.getAxis("move_y")))

@@ -1,6 +1,7 @@
 from vector2 import *
 import consts
 
+
 class Object:
     id_g: int
     id: int
@@ -10,7 +11,7 @@ class Object:
     ID: int = 0
     ALL = []
 
-    def __init__(self, pos=VectorZero, color=consts.WHITE):
+    def __init__(self, pos=None, color=consts.WHITE):
         cls = type(self)
 
         self.id = cls.ID

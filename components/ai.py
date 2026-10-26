@@ -8,7 +8,7 @@ class AI(Component):
     def __init__(
             self,
             radius: int = 100,
-            victims: list[Object] = [],
+            victims: list[Object] = None,
             action: Action = Action.Idle
     ):
         if victims is None:

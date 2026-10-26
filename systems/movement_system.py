@@ -14,5 +14,5 @@ class MovementSystem(System):
         move_comp = entity.GetComponent(Movement)
         trans_comp = entity.GetComponent(Transform)
 
-        if vel_comp != None:
+        if None not in (vel_comp, move_comp, trans_comp):
             trans_comp.pos += vel_comp.value.norm() * move_comp.speed * world.dt
