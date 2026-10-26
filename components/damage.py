@@ -1,4 +1,5 @@
-from component import Component
+from components.component import Component
+
 
 class Damage(Component):
     def __init__(

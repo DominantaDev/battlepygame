@@ -1,18 +1,22 @@
 from components.input import Input
 from components.velocity import Velocity
 from input_event import InputEvent
-from system import System
+from systems.system import System
 from classes.object import Object
 from vector2 import Vector2
 
 
 class InputSystem(System):
-    def InputRegistry(
+    @staticmethod
+    def Apply(
             entity: Object
     ):
         inp_comp = entity.GetComponent(Input)
-        vel_comp = entity.GetComponent(Velocity)
+        vel_comp = entity.UpdateComponent(Velocity)
 
-        if None not in (inp_comp, vel_comp):
-            vel_comp.value = Vector2(InputEvent.getAxis("move_x"),
-                                     InputEvent.getAxis("move_y"))
+        if None in (inp_comp, vel_comp):
+            return
+
+        print(InputEvent.getAxis("move_x"), InputEvent.getAxis("move_y"))
+        vel_comp.value = Vector2(InputEvent.getAxis("move_x"),
+                                 InputEvent.getAxis("move_y"))

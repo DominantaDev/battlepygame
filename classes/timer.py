@@ -15,7 +15,12 @@ class Timer:
         Timer.ALL.append(self)
 
     @staticmethod
-    def UpdateAll():
+    def UpdateAll(time: int):
+        timers_exit = []
+        """В МС!!!"""
         for i in Timer.ALL:
             i.now += world.dt
-            if
+            if time-i.now >= i.delta:
+                i.now = time
+                timers_exit.append(i)
+        return timers_exit

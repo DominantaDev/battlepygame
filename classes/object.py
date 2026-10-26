@@ -35,9 +35,10 @@ class Object:
         component
     ):
         component_type = type(component)
-        if self.GetComponent(component_type) != 0:
+        if self.GetComponent(component_type):
             self.DeleteComponent(component_type)
         self.AddComponent(component)
+        return self.GetComponent(component_type)
 
     def GetComponent(
             self,

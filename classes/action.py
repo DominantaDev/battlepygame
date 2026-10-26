@@ -1,6 +1,5 @@
 from classes.fabric import Fabric
 from classes.object import Object
-from components.movement import Movement
 from components.velocity import Velocity
 from components.transform import Transform
 from vector2 import Vector2

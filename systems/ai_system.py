@@ -1,6 +1,6 @@
 from components.hp import HP
 from components.velocity import Velocity
-from system import System
+from systems.system import System
 from classes.object import Object
 from classes.action import Action
 from components.ai import AI
@@ -9,15 +9,16 @@ from vector2 import Vector2
 
 
 class AISystem(System):
-    def AIApply(
+    @staticmethod
+    def Apply(
             entity: Object
     ):
-        if ai_comp == None:
-            return
-
         ai_comp = entity.GetComponent(AI)
         trans_comp = entity.GetComponent(Transform)
         hp_comp = entity.GetComponent(HP)
+
+        if ai_comp == None:
+            return
 
         ai_comp.action = Action.Idle
         entity.UpdateComponent(Velocity(Vector2(0, 0)))

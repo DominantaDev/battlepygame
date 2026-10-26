@@ -1,5 +1,6 @@
-from component import Component
+from components.component import Component
 from vector2 import *
+
 
 class Movement(Component):
     def __init__(

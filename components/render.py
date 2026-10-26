@@ -1,5 +1,6 @@
-from component import Component
+from components.component import Component
 import consts
+
 
 class Render(Component):
     def __init__(

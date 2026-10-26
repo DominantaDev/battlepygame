@@ -1,11 +1,12 @@
-from system import System
+from systems.system import System
 from classes.object import Object
 from components.damage import Damage
 from components.hp import HP
 
 
 class DamageSystem(System):
-    def DamageRegistry(
+    @staticmethod
+    def Apply(
             victim: Object
     ):
         dmg_comp = victim.GetComponent(Damage)

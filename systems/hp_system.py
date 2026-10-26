@@ -1,10 +1,11 @@
-from system import System
+from systems.system import System
 from classes.object import Object
 from components.hp import HP
 
 
 class HPSystem(System):
-    def DieRegistry(
+    @staticmethod
+    def Apply(
             entity: Object
     ):
         hp_comp = entity.GetComponent(HP)

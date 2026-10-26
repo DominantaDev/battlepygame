@@ -1,6 +1,5 @@
-from component import Component
+from components.component import Component
 
-from classes.action import Action
 from classes.object import Object
 
 
@@ -9,7 +8,7 @@ class AI(Component):
             self,
             radius: int = 100,
             victims: list[Object] = None,
-            action: Action = Action.Idle
+            action=None
     ):
         if victims is None:
             victims = []
