@@ -17,4 +17,4 @@ class RenderSystem(System):
             return
 
         pygame.draw.rect(world.screen, ren_comp.color, (trans_comp.pos.x,
-                                                        trans_comp.pos.x, trans_comp.scale.x, trans_comp.scale.y))
+                                                        trans_comp.pos.y, trans_comp.scale.x, trans_comp.scale.y))
