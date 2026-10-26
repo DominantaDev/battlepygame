@@ -2,6 +2,7 @@
 import pygame
 from classes.fabric import Fabric
 from classes.object import Object
+from components.ai import AI
 from components.velocity import Velocity
 import consts
 from input_event import InputEvent
@@ -27,18 +28,26 @@ player = Fabric.create_player()
 InputEvent("move_x", pygame.K_d, pygame.K_a)
 InputEvent("move_y", pygame.K_s, pygame.K_w)
 
+InputEvent("shoot_x", pygame.K_RIGHT, pygame.K_LEFT)
+InputEvent("shoot_y", pygame.K_DOWN, pygame.K_UP)
+
 # Основной цикл
 run = True
 world.dt = 0
 
+enemy_spawn_timer = Timer(3000)
+
 start_game_time = pygame.time.get_ticks()
 while run:
     world.dt = clock.tick(world.FPS) / 1000
-    timers_exit = Timer.UpdateAll(start_game_time-pygame.time.get_ticks())
+    timers_exit = Timer.UpdateAll(pygame.time.get_ticks()-start_game_time)
     # Обработка эвентов
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+
+    if enemy_spawn_timer.run:
+        Fabric.create_enemy(player)
 
     for ent in Object.ALL:
         InputSystem.Apply(ent)

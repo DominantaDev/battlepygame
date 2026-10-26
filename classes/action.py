@@ -32,6 +32,5 @@ class Action:
             target: Vector2
     ):
         ent_trans = ent.GetComponent(Transform)
-        targ_trans = target.GetComponent(Transform)
 
-        Fabric.create_bullet(ent, (targ_trans-ent_trans).norm())
+        Fabric.create_bullet(ent, (target-ent_trans.pos).norm())

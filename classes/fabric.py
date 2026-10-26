@@ -18,7 +18,7 @@ class Fabric:
         obj = Object()
         obj.AddComponents([
             Transform(Vector2(WIDTH//2, HEIGHT//2), Vector2(CEIL, CEIL)),
-            Movement(400),
+            Movement(200),
             HP(100),
             Input(),
             Render(GREEN),
@@ -31,12 +31,13 @@ class Fabric:
         obj.AddComponents([
             Transform(Vector2.Randomize(
                 0, 1, [WIDTH, HEIGHT]), Vector2(CEIL, CEIL)),
-            Movement(300),
+            Movement(150),
             HP(40),
             Render(RED),
             AI(200, [player_obj]),
             Velocity(Vector2(0, 0))
         ])
+        print(obj.GetComponent(Transform).pos.unpack())
         return obj
 
     def create_bullet(

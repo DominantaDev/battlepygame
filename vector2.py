@@ -47,4 +47,4 @@ class Vector2:
         b: int = 1,
         mult: list[int] = [1, 1]
     ):
-        return Vector2(random.randint(a*mult[0], b*mult[0])/mult[0], random.randint(a*mult[1], b*mult[1])/mult[1])
+        return Vector2(random.randint(a*mult[0], b*mult[0]), random.randint(a*mult[1], b*mult[1]))

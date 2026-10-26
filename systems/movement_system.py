@@ -19,4 +19,3 @@ class MovementSystem(System):
             return
 
         trans_comp.pos += vel_comp.value.norm() * move_comp.speed * world.dt
-        print(vel_comp.value)
