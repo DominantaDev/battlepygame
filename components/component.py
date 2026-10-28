@@ -1,2 +1,9 @@
+from classes.enum_components import EC
+
+
 class Component:
-    pass
+    def __init__(
+            self,
+            name: EC
+    ):
+        self.name = name

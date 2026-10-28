@@ -1,3 +1,4 @@
+from classes.enum_components import EC
 from components.movement import Movement
 from components.component import Component
 
@@ -15,7 +16,7 @@ class Object:
             self,
             component: Component
     ):
-        self.components[type(component)] = component
+        self.components[component.name] = component
 
     def AddComponents(
         self,
@@ -26,28 +27,24 @@ class Object:
 
     def DeleteComponent(
             self,
-            component_type
+            component_type: EC
     ):
         del self.components[component_type]
 
-    def UpdateComponent(
-        self,
-        component
-    ):
-        component_type = type(component)
-        if self.GetComponent(component_type):
-            self.DeleteComponent(component_type)
-        self.AddComponent(component)
-        return self.GetComponent(component_type)
-
     def GetComponent(
             self,
-            component_type
+            component_type: EC
     ):
         return self.components.get(component_type)
 
     def HasComponent(
             self,
-            component_type
+            component_type: EC
     ):
-        return component_type in self.components
+        return component_type in self.components.keys()
+
+    def HasComponents(
+            self,
+            component_type_list: list[EC]
+    ):
+        return all([self.HasComponent(x) for x in component_type_list])

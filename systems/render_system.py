@@ -1,7 +1,6 @@
 import pygame
+from classes.enum_components import EC
 from classes.object import Object
-from components.render import Render
-from components.transform import Transform
 import world
 from systems.system import System
 
@@ -11,8 +10,8 @@ class RenderSystem(System):
     def Apply(
             ent: Object
     ):
-        ren_comp = ent.GetComponent(Render)
-        trans_comp = ent.GetComponent(Transform)
+        ren_comp = ent.GetComponent(EC.RENDER)
+        trans_comp = ent.GetComponent(EC.TRANSFORM)
         if None in [ren_comp, trans_comp]:
             return
 

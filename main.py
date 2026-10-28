@@ -1,12 +1,12 @@
 # Импорты
 import pygame
+from classes.enum_components import EC
 from classes.fabric import Fabric
 from classes.object import Object
-from components.ai import AI
-from components.velocity import Velocity
 import consts
 from input_event import InputEvent
 from systems.ai_system import AISystem
+from systems.collider_system import ColliderSystem
 from systems.damage_system import DamageSystem
 from systems.hp_system import HPSystem
 from systems.impulse_system import ImpulseSystem
@@ -35,28 +35,30 @@ InputEvent("shoot_y", pygame.K_DOWN, pygame.K_UP)
 run = True
 world.dt = 0
 
-enemy_spawn_timer = Timer(3000)
-
 start_game_time = pygame.time.get_ticks()
+enemy_spawn_timer = Timer(3000, start_game_time,
+                          lambda: Fabric.create_enemy(player), infinity=True)
 while run:
     world.dt = clock.tick(world.FPS) / 1000
-    timers_exit = Timer.UpdateAll(pygame.time.get_ticks()-start_game_time)
+    world.now = pygame.time.get_ticks()-start_game_time
+    Timer.UpdateAll(pygame.time.get_ticks()-start_game_time)
+
     # Обработка эвентов
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
 
-    if enemy_spawn_timer.run:
-        Fabric.create_enemy(player)
-
     for ent in Object.ALL:
         InputSystem.Apply(ent)
         AISystem.Apply(ent)
         MovementSystem.Apply(ent)
+        ColliderSystem.Apply(ent)
         DamageSystem.Apply(ent)
         ImpulseSystem.Apply(ent)
         HPSystem.Apply(ent)
         RenderSystem.Apply(ent)
+
+    print(player.GetComponent(EC.HP).value)
 
     # Cycle-end
     pygame.display.update()

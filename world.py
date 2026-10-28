@@ -6,3 +6,4 @@ CEIL = 10
 FPS = 30
 
 screen = None
+now = None

@@ -1,8 +1,6 @@
+from classes.enum_components import EC
 from systems.system import System
 from classes.object import Object
-from components.velocity import Velocity
-from components.transform import Transform
-from components.movement import Movement
 import world
 
 
@@ -11,9 +9,9 @@ class MovementSystem(System):
     def Apply(
             entity: Object
     ):
-        vel_comp = entity.GetComponent(Velocity)
-        move_comp = entity.GetComponent(Movement)
-        trans_comp = entity.GetComponent(Transform)
+        vel_comp = entity.GetComponent(EC.VELOCITY)
+        move_comp = entity.GetComponent(EC.MOVEMENT)
+        trans_comp = entity.GetComponent(EC.TRANSFORM)
 
         if None in (vel_comp, move_comp, trans_comp):
             return

@@ -1,4 +1,6 @@
+from classes.enum_components import EC
 from components.ai import AI
+from components.collider import Collider
 from components.render import Render
 from components.hp import HP
 from components.input import Input
@@ -22,7 +24,8 @@ class Fabric:
             HP(100),
             Input(),
             Render(GREEN),
-            Velocity(Vector2(0, 0))
+            Velocity(Vector2(0, 0)),
+            Collider()
         ])
         return obj
 
@@ -32,12 +35,12 @@ class Fabric:
             Transform(Vector2.Randomize(
                 0, 1, [WIDTH, HEIGHT]), Vector2(CEIL, CEIL)),
             Movement(150),
-            HP(40),
+            HP(50),
             Render(RED),
             AI(200, [player_obj]),
-            Velocity(Vector2(0, 0))
+            Velocity(Vector2(0, 0)),
+            Collider()
         ])
-        print(obj.GetComponent(Transform).pos.unpack())
         return obj
 
     def create_bullet(
@@ -47,9 +50,10 @@ class Fabric:
         obj = Object()
         obj.AddComponents([
             Transform(parent_obj.GetComponent(
-                Transform).pos, Vector2(CEIL, CEIL)),
+                EC.TRANSFORM).pos, Vector2(CEIL, CEIL)),
             Movement(600),
             Render(PINK),
-            Velocity(veloc)
+            Velocity(veloc),
+            Collider()
         ])
         return obj
