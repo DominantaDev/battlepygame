@@ -19,7 +19,7 @@ class Timer:
     @staticmethod
     def UpdateAll(time: int):
         """В МС!!!"""
-        for i in Timer.ALL:
+        for i in Timer.ALL.copy():
             # print(f"{time}-{i.now} >= {i.delta} >>> {i.run}")
             if time-i.now >= i.delta:
                 i.now = time

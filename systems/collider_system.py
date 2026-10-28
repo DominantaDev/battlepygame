@@ -39,7 +39,7 @@ class ColliderSystem(System):
             tr = first.GetComponent(EC.TRANSFORM)
             tr2 = second.GetComponent(EC.TRANSFORM)
             return all([(min(tr.pos.x+tr.scale.x, tr2.pos.x+tr2.scale.x) -
-                        max(tr.pos.x, tr2.pos.x)) >= 0,
-                       (min(tr.pos.y+tr.scale.y, tr2.pos.y+tr2.scale.y) -
-                        max(tr.pos.y, tr2.pos.y) > 0) >= 0])
+                         max(tr.pos.x, tr2.pos.x)) >= 0,
+                        (min(tr.pos.y+tr.scale.y, tr2.pos.y+tr2.scale.y) -
+                         max(tr.pos.y, tr2.pos.y)) >= 0])
         return False

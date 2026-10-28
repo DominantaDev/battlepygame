@@ -9,7 +9,7 @@ class HP(Component):
     def __init__(
             self,
             value: int = 100,
-            invul_frames: int = 3000
+            invul_frames: int = 1000
     ):
         """invul_frames в мс"""
         super().__init__(type(self)._name)

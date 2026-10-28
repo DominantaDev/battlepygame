@@ -62,6 +62,6 @@ while run:
 
     # Cycle-end
     pygame.display.update()
-    world.screen.fill(consts.BLACK)
+    world.screen.fill(world.screen_color)
 
 pygame.quit()
