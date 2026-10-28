@@ -57,3 +57,14 @@ class Fabric:
             Collider()
         ])
         return obj
+
+    def create_wall(
+            pos: Vector2
+    ):
+        obj = Object()
+        obj.AddComponents([
+            Transform(pos, Vector2(CEIL, CEIL)),
+            Render(WHITE),
+            Collider(True)
+        ])
+        return obj

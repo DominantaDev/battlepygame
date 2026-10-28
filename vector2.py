@@ -51,3 +51,6 @@ class Vector2:
 
     def __abs__(self):
         return Vector2(abs(self.x), abs(self.y))
+
+    def copy(self):
+        return Vector2(self.x, self.y)

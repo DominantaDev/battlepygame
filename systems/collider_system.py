@@ -4,6 +4,7 @@ from components.damage import Damage
 from components.impulse import Impulse
 from systems.system import System
 from vector2 import Vector2
+from world import CEIL
 
 
 class ColliderSystem(System):
@@ -24,14 +25,19 @@ class ColliderSystem(System):
                 i_col_comp = i.GetComponent(EC.COLLIDER)
                 i_trans_comp = i.GetComponent(EC.TRANSFORM)
                 if None not in (i_col_comp, i_trans_comp):
-                    if ColliderSystem.Chech(ent, i):
+                    if ColliderSystem.Check(ent, i):
                         if not i.GetComponent(EC.HP).invul_status:
                             i.PinComponent(Damage(10))
                             i.AddComponent(
                                 Impulse(i_trans_comp.pos-trans_comp.pos, 40))
 
+        for i in Object.ALL:
+            if i.GetComponent(EC.COLLIDER).static:
+                if ColliderSystem.Check(ent, i):
+                    trans_comp.pos = trans_comp.old_pos
+
     @staticmethod
-    def Chech(
+    def Check(
         first: Object,
         second: Object
     ):

@@ -16,4 +16,5 @@ class MovementSystem(System):
         if None in (vel_comp, move_comp, trans_comp):
             return
 
+        trans_comp.old_pos = trans_comp.pos.copy()
         trans_comp.pos += vel_comp.value.norm() * move_comp.speed * world.dt

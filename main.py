@@ -35,7 +35,13 @@ InputEvent("shoot_y", pygame.K_DOWN, pygame.K_UP)
 run = True
 world.dt = 0
 
+for i in range(10, 20):
+    Fabric.create_wall(Vector2(i*world.CEIL, 10))
+
 start_game_time = pygame.time.get_ticks()
+
+Timer(500, start_game_time, lambda: Fabric.create_wall(Vector2(
+    random.randint(0, world.WIDTH), random.randint(0, world.HEIGHT))), infinity=True)
 enemy_spawn_timer = Timer(3000, start_game_time,
                           lambda: Fabric.create_enemy(player), infinity=True)
 while run:

@@ -6,6 +6,9 @@ class Collider(Component):
     _name = EC.COLLIDER
 
     def __init__(
-        self
+        self,
+        static: bool = False
     ):
         super().__init__(type(self)._name)
+
+        self.static = static
