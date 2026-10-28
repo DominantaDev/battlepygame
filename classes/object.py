@@ -25,6 +25,19 @@ class Object:
         for i in components:
             self.AddComponent(i)
 
+    def PinComponent(
+            self,
+            component: Component
+    ):
+        self.components.setdefault(component.name, []).append(component)
+
+    def UnpinComponent(
+            self,
+            component: Component
+    ):
+        if component in self.components[component.name]:
+            self.components[component.name].remove(component)
+
     def DeleteComponent(
             self,
             component_type: EC
@@ -41,6 +54,8 @@ class Object:
             self,
             component_type: EC
     ):
+        if type(self.components.get(component_type)) == list:
+            return bool(self.components[component_type])
         return component_type in self.components.keys()
 
     def HasComponents(

@@ -14,16 +14,18 @@ class DamageSystem(System):
         dmg_comp = victim.GetComponent(EC.DAMAGE)
         hp_comp = victim.GetComponent(EC.HP)
 
-        if None in (dmg_comp, hp_comp):
+        if not victim.HasComponents([EC.DAMAGE, EC.HP]):
             return
 
         if not hp_comp.invul_status:
-            hp_comp.value -= dmg_comp.value
-            victim.DeleteComponent(EC.DAMAGE)
+            for i in victim.components[EC.DAMAGE]:
+                hp_comp.value -= i.value
+                victim.UnpinComponent(i)
+
             hp_comp.invul_status = True
+            print("получил неузвимость")
 
             ren = victim.GetComponent(EC.RENDER)
-            print(ren.color)
             old_color = ren.color
             Timer(hp_comp.invul_frames, world.now,
                   lambda: (setattr(hp_comp, "invul_status", False),

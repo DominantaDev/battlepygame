@@ -22,6 +22,7 @@ class Timer:
         for i in Timer.ALL.copy():
             # print(f"{time}-{i.now} >= {i.delta} >>> {i.run}")
             if time-i.now >= i.delta:
+                print(f"таймер сработал {Timer.ALL}")
                 i.now = time
                 i.func()
                 if i.infinity:

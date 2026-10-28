@@ -26,7 +26,7 @@ class ColliderSystem(System):
                 if None not in (i_col_comp, i_trans_comp):
                     if ColliderSystem.Chech(ent, i):
                         if not i.GetComponent(EC.HP).invul_status:
-                            i.AddComponent(Damage(10))
+                            i.PinComponent(Damage(10))
                             i.AddComponent(
                                 Impulse(i_trans_comp.pos-trans_comp.pos, 40))
 
