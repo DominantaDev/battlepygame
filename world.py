@@ -6,7 +6,7 @@ dt = 0
 WIDTH = 1000
 HEIGHT = 800
 CEIL = 10
-FPS = 30
+FPS = 120
 
 screen = None
 now = None

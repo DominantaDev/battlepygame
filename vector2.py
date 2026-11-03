@@ -20,6 +20,13 @@ class Vector2:
         else:
             return Vector2(self.x / self.len, self.y / self.len)
 
+    # def normal(self):
+    #     m = max(self.x, self.y)
+    #     return Vector2(
+    #         self.x if self.x == m else 0,
+    #         self.y if self.y == m else 0
+    #     )
+
     def unpack(self):
         return (self.x, self.y)
 
@@ -54,3 +61,24 @@ class Vector2:
 
     def copy(self):
         return Vector2(self.x, self.y)
+
+    def dot(self, vec):
+        return (self.x*vec.x)+(self.y*vec.y)
+
+    def __lt__(self, vec):
+        return self.x < vec.x and self.y < vec.y
+
+    def __le__(self, vec):
+        return self.x <= vec.x and self.y <= vec.y
+
+    def __gt__(self, vec):
+        return self.x > vec.x and self.y > vec.y
+
+    def __ge__(self, vec):
+        return self.x >= vec.x and self.y >= vec.y
+
+    def __eq__(self, vec):
+        return self.x == vec.x and self.y == vec.y
+
+    def __ne__(self, vec):
+        return self.x != vec.x and self.y != vec.y

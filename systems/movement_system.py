@@ -1,4 +1,5 @@
 from classes.enum_components import EC
+from systems.collider_system import ColliderSystem
 from systems.system import System
 from classes.object import Object
 import world
@@ -18,3 +19,7 @@ class MovementSystem(System):
 
         trans_comp.old_pos = trans_comp.pos.copy()
         trans_comp.pos += vel_comp.value.norm() * move_comp.speed * world.dt
+        # for i in Object.ALL:
+        #     if i.GetComponent(EC.COLLIDER).static:
+        #         if ColliderSystem.Check(entity, i):
+        #             i
