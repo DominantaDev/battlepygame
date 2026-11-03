@@ -12,3 +12,4 @@ class EC(Enum):
     RENDER = auto()
     TRANSFORM = auto()
     VELOCITY = auto()
+    MATERIAL = auto()

@@ -13,5 +13,5 @@ class HPSystem(System):
         hp_comp = entity.GetComponent(EC.HP)
         if hp_comp != None:
             if hp_comp.value <= 0:
-                Object.ALL.remove(entity)
+                entity.DELETEOBJ()
                 world.screen_color = consts.WHITE

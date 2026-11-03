@@ -5,3 +5,9 @@ class DamageType(Enum):
     PHYSICAL = auto()
     MAGIC = auto()
     RANGED = auto()
+
+
+class ColInterType(Enum):
+    FRAGILE = auto()
+    NORMAL = auto()
+    GHOST = auto()

@@ -1,6 +1,8 @@
 from classes.enum_components import EC
+from classes.enums import ColInterType
 from components.ai import AI
 from components.collider import Collider
+from components.material import Material
 from components.render import Render
 from components.hp import HP
 from components.input import Input
@@ -25,7 +27,8 @@ class Fabric:
             Input(),
             Render(GREEN),
             Velocity(Vector2(0, 0)),
-            Collider()
+            Collider(),
+            Material(ColInterType.NORMAL)
         ])
         return obj
 
@@ -39,7 +42,8 @@ class Fabric:
             Render(RED),
             AI(200, [player_obj]),
             Velocity(Vector2(0, 0)),
-            Collider()
+            Collider(),
+            Material(ColInterType.NORMAL)
         ])
         return obj
 
@@ -54,7 +58,8 @@ class Fabric:
             Movement(600),
             Render(PINK),
             Velocity(veloc),
-            Collider()
+            Collider(),
+            Material(ColInterType.FRAGILE)
         ])
         return obj
 
@@ -66,6 +71,7 @@ class Fabric:
         obj.AddComponents([
             Transform(pos, size),
             Render(WHITE),
-            Collider(True)
+            Collider(True),
+            Material(ColInterType.NORMAL)
         ])
         return obj

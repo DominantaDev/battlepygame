@@ -63,3 +63,7 @@ class Object:
             component_type_list: list[EC]
     ):
         return all([self.HasComponent(x) for x in component_type_list])
+
+    def DELETEOBJ(self):
+        Object.ALL.remove(self)
+        del self

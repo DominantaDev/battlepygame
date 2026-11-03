@@ -1,4 +1,5 @@
 from classes.enum_components import EC
+from classes.enums import ColInterType
 from classes.object import Object
 from components.damage import Damage
 from components.impulse import Impulse
@@ -16,6 +17,7 @@ class ColliderSystem(System):
         coll_comp = ent.GetComponent(EC.COLLIDER)
         trans_comp = ent.GetComponent(EC.TRANSFORM)
         ai_comp = ent.GetComponent(EC.AI)
+        mat_comp = ent.GetComponent(EC.MATERIAL)
 
         if None in (vel_comp, trans_comp, coll_comp):
             return
@@ -35,16 +37,20 @@ class ColliderSystem(System):
             if i.GetComponent(EC.COLLIDER).static:
                 checked = ColliderSystem.Check(ent, i)
                 if checked[bool]:
-                    checked = checked[tuple]
-                    trans_comp.pos -= min(
-                        (
-                            Vector2(checked[0].x, 0),
-                            Vector2(checked[1].x, 0),
-                            Vector2(0, checked[0].y),
-                            Vector2(0, checked[1].y)
-                        ),
-                        key=lambda v: abs(v.x) + abs(v.y)
-                    )
+                    if mat_comp.intertype != ColInterType.GHOST:
+                        if mat_comp.intertype == ColInterType.NORMAL:
+                            checked = checked[tuple]
+                            trans_comp.pos -= min(
+                                (
+                                    Vector2(checked[0].x, 0),
+                                    Vector2(checked[1].x, 0),
+                                    Vector2(0, checked[0].y),
+                                    Vector2(0, checked[1].y)
+                                ),
+                                key=lambda v: abs(v.x) + abs(v.y)
+                            )
+                        elif mat_comp.intertype == ColInterType.FRAGILE:
+                            ent.DELETEOBJ()
 
     @staticmethod
     def Check(

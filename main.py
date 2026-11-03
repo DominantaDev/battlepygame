@@ -37,6 +37,22 @@ world.dt = 0
 
 Fabric.create_wall(Vector2(50*world.CEIL, 50*world.CEIL),
                    Vector2(world.CEIL*5, world.CEIL*3))
+Fabric.create_wall(
+    Vector2(0, 0),
+    Vector2(world.WIDTH, world.CEIL)
+)
+Fabric.create_wall(
+    Vector2(0, world.HEIGHT),
+    Vector2(world.WIDTH, world.CEIL)
+)
+Fabric.create_wall(
+    Vector2(0, 0),
+    Vector2(world.CEIL, world.HEIGHT)
+)
+Fabric.create_wall(
+    Vector2(world.WIDTH, 0),
+    Vector2(world.CEIL, world.HEIGHT)
+)
 
 start_game_time = pygame.time.get_ticks()
 
