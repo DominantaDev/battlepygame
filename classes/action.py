@@ -32,4 +32,5 @@ class Action:
     ):
         ent_trans = ent.GetComponent(EC.TRANSFORM)
 
-        Fabric.create_bullet(ent, (target-ent_trans.pos).norm())
+        Fabric.create_bullet(
+            ent, (target-ent_trans.pos).norm(), ent.GetComponent(EC.TEAM).num)

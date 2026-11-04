@@ -14,4 +14,4 @@ class HPSystem(System):
         if hp_comp != None:
             if hp_comp.value <= 0:
                 entity.DELETEOBJ()
-                world.screen_color = consts.WHITE
+                print(f"{entity} убит")

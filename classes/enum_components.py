@@ -13,3 +13,6 @@ class EC(Enum):
     TRANSFORM = auto()
     VELOCITY = auto()
     MATERIAL = auto()
+    TEAM = auto()
+    WEAPONCOMP = auto()
+    SHARPNESS = auto()

@@ -19,3 +19,5 @@ class AI(Component):
         self.radius = radius
         self.victims = victims
         self.action = action
+
+        self.stunning = False

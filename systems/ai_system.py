@@ -21,13 +21,14 @@ class AISystem(System):
         ai_comp.action = Action.Idle
         vel_comp.value = Vector2(0, 0)
 
-        for vict in Object.ALL:
-            if vict.HasComponent(EC.TRANSFORM):
-                if vict in ai_comp.victims:
-                    if (vict.GetComponent(EC.TRANSFORM).pos - trans_comp.pos).len <= ai_comp.radius:
-                        if hp_comp.value <= 25:
-                            Action.RunAway(entity, vict)
-                            return
+        if not ai_comp.stunning:
+            for vict in Object.ALL:
+                if vict.HasComponent(EC.TRANSFORM):
+                    if vict in ai_comp.victims:
+                        if (vict.GetComponent(EC.TRANSFORM).pos - trans_comp.pos).len <= ai_comp.radius:
+                            if hp_comp.value <= 25:
+                                Action.RunAway(entity, vict)
+                                return
 
-                        Action.Chase(entity, vict)
-                        return
+                            Action.Chase(entity, vict)
+                            return

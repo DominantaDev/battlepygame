@@ -1,6 +1,6 @@
 # Импорты
 import pygame
-from classes.enum_components import EC
+from classes.enum_components import *
 from classes.fabric import Fabric
 from classes.object import Object
 import consts
@@ -36,27 +36,27 @@ run = True
 world.dt = 0
 
 Fabric.create_wall(Vector2(50*world.CEIL, 50*world.CEIL),
-                   Vector2(world.CEIL*5, world.CEIL*3))
+                   Vector2(world.CEIL*20, world.CEIL*15))
 Fabric.create_wall(
-    Vector2(0, 0),
-    Vector2(world.WIDTH, world.CEIL)
+    Vector2(0, 0-world.CEIL*10),
+    Vector2(world.WIDTH, world.CEIL*10)
 )
 Fabric.create_wall(
     Vector2(0, world.HEIGHT),
-    Vector2(world.WIDTH, world.CEIL)
+    Vector2(world.WIDTH, world.CEIL*10)
 )
 Fabric.create_wall(
-    Vector2(0, 0),
-    Vector2(world.CEIL, world.HEIGHT)
+    Vector2(0-world.CEIL*10, 0),
+    Vector2(world.CEIL*10, world.HEIGHT)
 )
 Fabric.create_wall(
     Vector2(world.WIDTH, 0),
-    Vector2(world.CEIL, world.HEIGHT)
+    Vector2(world.CEIL*10, world.HEIGHT)
 )
 
 start_game_time = pygame.time.get_ticks()
 
-enemy_spawn_timer = Timer(3000, start_game_time,
+enemy_spawn_timer = Timer(1500, start_game_time,
                           lambda: Fabric.create_enemy(player), infinity=True)
 while run:
     world.dt = clock.tick(world.FPS) / 1000

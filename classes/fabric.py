@@ -1,5 +1,7 @@
 from classes.enum_components import EC
 from classes.enums import ColInterType
+from classes.weapon import Weapon
+from components import team
 from components.ai import AI
 from components.collider import Collider
 from components.material import Material
@@ -7,7 +9,10 @@ from components.render import Render
 from components.hp import HP
 from components.input import Input
 from components.movement import Movement
+from components.sharpness import Sharpness
+from components.team import Team
 from components.velocity import Velocity
+from components.weapon_comp import WeaponComp
 from vector2 import Vector2
 
 from classes.object import Object
@@ -28,7 +33,11 @@ class Fabric:
             Render(GREEN),
             Velocity(Vector2(0, 0)),
             Collider(),
-            Material(ColInterType.NORMAL)
+            Material(ColInterType.NORMAL),
+            Team(0),
+            WeaponComp(Weapon(
+                20, 50, 20, 150
+            ))
         ])
         return obj
 
@@ -37,19 +46,22 @@ class Fabric:
         obj.AddComponents([
             Transform(Vector2.Randomize(
                 0, 1, [WIDTH, HEIGHT]), Vector2(CEIL, CEIL)),
-            Movement(150),
-            HP(50),
+            Movement(250),
+            HP(100),
             Render(RED),
-            AI(200, [player_obj]),
+            AI(300, [player_obj]),
             Velocity(Vector2(0, 0)),
             Collider(),
-            Material(ColInterType.NORMAL)
+            Material(ColInterType.NORMAL),
+            Team(1),
+            Sharpness(20, 20)
         ])
         return obj
 
     def create_bullet(
             parent_obj: Object,
-            veloc: Vector2
+            veloc: Vector2,
+            team_num: int
     ):
         obj = Object()
         obj.AddComponents([
@@ -59,7 +71,9 @@ class Fabric:
             Render(PINK),
             Velocity(veloc),
             Collider(),
-            Material(ColInterType.FRAGILE)
+            Material(ColInterType.FRAGILE),
+            Team(team_num),
+            Sharpness(20, 20)
         ])
         return obj
 
