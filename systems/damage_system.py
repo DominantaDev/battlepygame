@@ -27,7 +27,7 @@ class DamageSystem(System):
 
             ren = victim.GetComponent(EC.RENDER)
             old_color = ren.color
-            Timer(hp_comp.invul_frames, world.now,
+            Timer(hp_comp.invul_frames,
                   lambda: (setattr(hp_comp, "invul_status", False),
                            setattr(ren, "color", old_color)))
             ren.color = consts.WHITE

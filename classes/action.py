@@ -25,12 +25,12 @@ class Action:
         ent.GetComponent(EC.VELOCITY).value = (ent.GetComponent(
             EC.TRANSFORM).pos - victim.GetComponent(EC.TRANSFORM).pos)
 
-    @staticmethod
-    def Shoot(
-            ent: Object,
-            target: Vector2
-    ):
-        ent_trans = ent.GetComponent(EC.TRANSFORM)
+    # @staticmethod
+    # def Shoot(
+    #         ent: Object,
+    #         target: Vector2
+    # ):
+    #     ent_trans = ent.GetComponent(EC.TRANSFORM)
 
-        Fabric.create_bullet(
-            ent, (target-ent_trans.pos).norm(), ent.GetComponent(EC.TEAM).num)
+    #     Fabric.create_bullet(
+    #         ent, (target-ent_trans.pos).norm(), ent.GetComponent(EC.TEAM).num)

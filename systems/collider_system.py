@@ -71,7 +71,7 @@ class ColliderSystem(System):
                                 EC.TRANSFORM).pos-trans_comp.pos, sharp_comp.imp))
                             if None != i_ai_comp and not i_ai_comp.stunning:
                                 i_ai_comp.stunning = True
-                                Timer(1000, world.now, lambda comp=i_ai_comp: setattr(
+                                Timer(1000, lambda comp=i_ai_comp: setattr(
                                     comp, "stunning", False))
                         if mat_comp.intertype == ColInterType.FRAGILE:
                             ent.DELETEOBJ()

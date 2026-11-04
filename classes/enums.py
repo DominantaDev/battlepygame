@@ -11,3 +11,9 @@ class ColInterType(Enum):
     FRAGILE = auto()
     NORMAL = auto()
     GHOST = auto()
+
+
+class ClassChar(Enum):
+    MELEE = auto()
+    RANGE = auto()
+    SUPPORT = auto()

@@ -16,3 +16,5 @@ class EC(Enum):
     TEAM = auto()
     WEAPONCOMP = auto()
     SHARPNESS = auto()
+    LIFETIME = auto()
+    INFO = auto()

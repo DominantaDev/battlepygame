@@ -27,13 +27,9 @@ class InputSystem(System):
         vel_comp.value = Vector2(InputEvent.getAxis("move_x"),
                                  InputEvent.getAxis("move_y"))
         if sht_x_ev != 0 or sht_y_ev != 0:
-            # Action.Shoot(entity, entity.GetComponent(EC.TRANSFORM).pos + Vector2(
-            #     sht_x_ev,
-            #     sht_y_ev
-            # ))
             if weap_comp.main.done:
                 Fabric.create_bullet(entity, Vector2(
-                    sht_x_ev, sht_y_ev), entity.GetComponent(EC.TEAM).num)
+                    sht_x_ev, sht_y_ev), entity.GetComponent(EC.WEAPONCOMP).main)
                 weap_comp.main.done = False
-                Timer(weap_comp.main.cooldown, world.now,
+                Timer(weap_comp.main.cooldown,
                       lambda: setattr(weap_comp.main, "done", True))

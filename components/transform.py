@@ -15,4 +15,3 @@ class Transform(Component):
 
         self.pos = pos
         self.scale = scale
-        self.old_pos = pos

@@ -1,5 +1,4 @@
 from classes.enum_components import EC
-from classes.timer import Timer
 from components.component import Component
 
 

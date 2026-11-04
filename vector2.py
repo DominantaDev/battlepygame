@@ -1,8 +1,6 @@
 import math
 import random
 
-from interval import Interval
-
 
 class Vector2:
     x: float = 0

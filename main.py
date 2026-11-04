@@ -1,6 +1,7 @@
 # Импорты
 import pygame
 from classes.enum_components import *
+from classes.enums_objs import CharList
 from classes.fabric import Fabric
 from classes.object import Object
 import consts
@@ -23,7 +24,7 @@ world.screen = pygame.display.set_mode((world.WIDTH, world.HEIGHT))
 pygame.display.set_caption('ZMEYAAAA')
 clock = pygame.time.Clock()
 
-player = Fabric.create_player()
+player = Fabric.create_player(CharList.FIGHTER)
 
 InputEvent("move_x", pygame.K_d, pygame.K_a)
 InputEvent("move_y", pygame.K_s, pygame.K_w)
@@ -55,9 +56,11 @@ Fabric.create_wall(
 )
 
 start_game_time = pygame.time.get_ticks()
+world.now = start_game_time
 
-enemy_spawn_timer = Timer(1500, start_game_time,
+enemy_spawn_timer = Timer(1500,
                           lambda: Fabric.create_enemy(player), infinity=True)
+
 while run:
     world.dt = clock.tick(world.FPS) / 1000
     world.now = pygame.time.get_ticks()-start_game_time
