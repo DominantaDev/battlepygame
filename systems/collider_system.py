@@ -1,3 +1,4 @@
+from area import Area
 from classes.enum_components import EC
 from classes.enums import ColInterType
 from classes.object import Object
@@ -46,13 +47,13 @@ class ColliderSystem(System):
                 if checked[bool]:
                     if mat_comp.intertype != ColInterType.GHOST:
                         if mat_comp.intertype == ColInterType.NORMAL:
-                            checked = checked[tuple]
+                            checked = checked[Area]
                             trans_comp.pos -= min(
                                 (
-                                    Vector2(checked[0].x, 0),
-                                    Vector2(checked[1].x, 0),
-                                    Vector2(0, checked[0].y),
-                                    Vector2(0, checked[1].y)
+                                    Vector2(checked.x_inter.min_step, 0),
+                                    Vector2(checked.x_inter.max_step, 0),
+                                    Vector2(0, checked.y_inter.min_step),
+                                    Vector2(0, checked.y_inter.max_step)
                                 ),
                                 key=lambda v: abs(v.x) + abs(v.y)
                             )
@@ -83,17 +84,16 @@ class ColliderSystem(System):
         if None not in (first.GetComponent(EC.COLLIDER), second.GetComponent(EC.COLLIDER)):
             tr = first.GetComponent(EC.TRANSFORM)
             tr2 = second.GetComponent(EC.TRANSFORM)
-            a = (
+            mincov_dif = Area(
                 tr.pos-(tr2.pos+tr2.scale),
                 (tr.pos+tr.scale)-tr2.pos
             )
-            z = 0
             if ColInterType.GHOST in (second.GetComponent(EC.MATERIAL).intertype, first.GetComponent(EC.MATERIAL).intertype):
                 return {
-                    tuple: (1000, 1000),
+                    Area: None,
                     bool: False
                 }
             return {
-                tuple: a,
-                bool: a[0]-Vector2(z, z) < Vector2(0, 0) < a[1]+Vector2(z, z)
+                Area: mincov_dif,
+                bool: mincov_dif.within(Vector2(0, 0))
             }
