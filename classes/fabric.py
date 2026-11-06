@@ -1,8 +1,8 @@
 from classes.character import Character
+from classes.enemy import Enemy
 from classes.enum_components import EC
-from classes.enums import ColInterType
+from classes.enums import ColInterType, ClassEnemy
 from classes.weapon import Weapon
-from components import team
 from components.ai import AI
 from components.collider import Collider
 from components.info import Info
@@ -41,26 +41,31 @@ class Fabric:
             Material(ColInterType.NORMAL),
             Team(0),
             WeaponComp(char.weapon),
-            Info(char.title)
+            Info(char.name, char.class_char)
         ])
         return obj
 
-    def create_enemy(player_obj):
+    def create_enemy(enemy_class: Enemy, player_obj):
+
+        enemy_class = enemy_class.value
         obj = Object()
         obj.AddComponents([
             Transform(Vector2.Randomize(
-                0, 1, [WIDTH, HEIGHT]), Vector2(CEIL, CEIL)),
-            Movement(250),
-            HP(100),
+                0, 1, [WIDTH, HEIGHT]), enemy_class.scale),
+            Movement(enemy_class.speed),
+            HP(enemy_class.hp),
             Render(RED),
-            AI(300, [player_obj]),
+            AI(enemy_class.radius, [player_obj]),
             Velocity(Vector2(0, 0)),
             Collider(),
             Material(ColInterType.NORMAL),
             Team(1),
-            Sharpness(20, 20),
-            Info("Враг")
+            Info(enemy_class.name, enemy_class.type_enemy)
         ])
+        if enemy_class.type_enemy == ClassEnemy.MELEE:
+            obj.AddComponent(Sharpness(20, 20))
+        else:
+            obj.AddComponent(WeaponComp(enemy_class.weapon))
         return obj
 
     def create_bullet(
@@ -79,7 +84,8 @@ class Fabric:
             Material(ColInterType.FRAGILE),
             Team(parent_obj.GetComponent(EC.TEAM).num),
             Sharpness(20, 20),
-            Info(f"Пуля {parent_obj.GetComponent(EC.INFO).title}"),
+            Info(f"Пуля {parent_obj.GetComponent(EC.INFO).name}",
+                 parent_obj.GetComponent(EC.INFO).class_entity),
             Lifetime.init_distance(obj, parent_obj.GetComponent(
                 EC.TRANSFORM).pos, parent_obj.GetComponent(EC.TRANSFORM).pos + veloc*weapon_obj.range, weapon_obj.speed)
         ])
@@ -95,6 +101,6 @@ class Fabric:
             Render(WHITE),
             Collider(True),
             Material(ColInterType.NORMAL),
-            Info("Стена")
+            Info("Стена", "Стена")
         ])
         return obj

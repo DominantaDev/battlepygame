@@ -4,12 +4,12 @@ from classes.enums import ColInterType
 
 
 class Material(Component):
-    _name = EC.MATERIAL
+    _title = EC.MATERIAL
 
     def __init__(
         self,
         intertype: ColInterType = ColInterType.NORMAL
     ):
-        super().__init__(type(self)._name)
+        super().__init__(type(self)._title)
 
         self.intertype = intertype

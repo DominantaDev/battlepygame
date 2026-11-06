@@ -14,6 +14,11 @@ class ColInterType(Enum):
 
 
 class ClassChar(Enum):
-    MELEE = auto()
-    RANGE = auto()
-    SUPPORT = auto()
+    MELEE = "Melee"
+    RANGE = "Range"
+    SUPPORT = "Support"
+
+
+class ClassEnemy(Enum):
+    MELEE = "Melee"
+    RANGE = "Range"

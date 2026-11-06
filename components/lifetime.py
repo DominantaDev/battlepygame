@@ -2,19 +2,18 @@ from classes.enum_components import EC
 from classes.object import Object
 from classes.timer import Timer
 from components.component import Component
-from components.velocity import Velocity
 from vector2 import Vector2
 
 
 class Lifetime(Component):
-    _name = EC.LIFETIME
+    _title = EC.LIFETIME
 
     def __init__(
             self,
             value: float,
             parent: Object
     ):
-        super().__init__(type(self)._name)
+        super().__init__(type(self)._title)
 
         self.value = value
 

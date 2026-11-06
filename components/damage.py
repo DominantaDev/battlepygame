@@ -4,14 +4,14 @@ from components.component import Component
 
 
 class Damage(Component):
-    _name = EC.DAMAGE
+    _title = EC.DAMAGE
 
     def __init__(
             self,
             value: int = 10,
             dmg_type: DamageType = DamageType.PHYSICAL
     ):
-        super().__init__(type(self)._name)
+        super().__init__(type(self)._title)
 
         self.value = value
         self.dmg_type = dmg_type

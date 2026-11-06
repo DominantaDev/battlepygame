@@ -1,21 +1,19 @@
+from classes.entity import Entity
 from classes.enums import ClassChar
 from classes.weapon import Weapon
 from vector2 import Vector2
 
 
-class Character:
+class Character(Entity):
     def __init__(
         self,
-        title: str,
+        name: str,
         hp: float,
         speed: float,
         scale: Vector2,
         weapon: Weapon,
         class_char: ClassChar
     ):
-        self.title = title
-        self.hp = hp
-        self.speed = speed
-        self.scale = scale
-        self.weapon = weapon
+        super().__init__(name, hp, speed, scale, weapon)
+
         self.class_char = class_char

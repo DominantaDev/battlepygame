@@ -5,7 +5,7 @@ from classes.object import Object
 
 
 class AI(Component):
-    _name = EC.AI
+    _title = EC.AI
 
     def __init__(
             self,
@@ -13,7 +13,7 @@ class AI(Component):
             victims: list[Object] = None,
             action=None
     ):
-        super().__init__(type(self)._name)
+        super().__init__(type(self)._title)
         if victims is None:
             victims = []
         self.radius = radius

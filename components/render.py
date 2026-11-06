@@ -4,12 +4,12 @@ import consts
 
 
 class Render(Component):
-    _name = EC.RENDER
+    _title = EC.RENDER
 
     def __init__(
             self,
             color: tuple = consts.WHITE
     ):
-        super().__init__(type(self)._name)
+        super().__init__(type(self)._title)
 
         self.color = color

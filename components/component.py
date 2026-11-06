@@ -4,6 +4,6 @@ from classes.enum_components import EC
 class Component:
     def __init__(
             self,
-            name: EC
+            title: EC
     ):
-        self.name = name
+        self.title = title

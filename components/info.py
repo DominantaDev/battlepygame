@@ -5,12 +5,14 @@ from classes.object import Object
 
 
 class Info(Component):
-    _name = EC.INFO
+    _title = EC.INFO
 
     def __init__(
             self,
-            title: str
+            name: str,
+            class_entity: str
     ):
-        super().__init__(type(self)._name)
+        super().__init__(type(self)._title)
 
-        self.title = title
+        self.name = name
+        self.class_entity = class_entity

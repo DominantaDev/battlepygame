@@ -3,7 +3,7 @@ from components.component import Component
 
 
 class HP(Component):
-    _name = EC.HP
+    _title = EC.HP
 
     def __init__(
             self,
@@ -11,7 +11,7 @@ class HP(Component):
             invul_frames: int = 1000
     ):
         """invul_frames в мс"""
-        super().__init__(type(self)._name)
+        super().__init__(type(self)._title)
 
         self.value = value
         self.invul_frames = invul_frames

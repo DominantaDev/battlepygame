@@ -16,7 +16,7 @@ class Object:
             self,
             component: Component
     ):
-        self.components[component.name] = component
+        self.components[component.title] = component
 
     def AddComponents(
         self,
@@ -29,14 +29,14 @@ class Object:
             self,
             component: Component
     ):
-        self.components.setdefault(component.name, []).append(component)
+        self.components.setdefault(component.title, []).append(component)
 
     def UnpinComponent(
             self,
             component: Component
     ):
-        if component in self.components[component.name]:
-            self.components[component.name].remove(component)
+        if component in self.components[component.title]:
+            self.components[component.title].remove(component)
 
     def DeleteComponent(
             self,
