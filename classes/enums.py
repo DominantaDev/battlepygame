@@ -22,3 +22,9 @@ class ClassChar(Enum):
 class ClassEnemy(Enum):
     MELEE = "Melee"
     RANGE = "Range"
+
+
+class EffectsEnum(Enum):
+    BURNING = auto()
+    SLOWNESS = auto()
+    FASTNESS = auto()

@@ -18,3 +18,4 @@ class EC(Enum):
     SHARPNESS = auto()
     LIFETIME = auto()
     INFO = auto()
+    EFFECT = auto()

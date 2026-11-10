@@ -9,6 +9,7 @@ from input_event import InputEvent
 from systems.ai_system import AISystem
 from systems.collider_system import ColliderSystem
 from systems.damage_system import DamageSystem
+from systems.effect_system import EffectSystem
 from systems.hp_system import HPSystem
 from systems.impulse_system import ImpulseSystem
 from systems.input_system import InputSystem
@@ -74,6 +75,7 @@ while run:
     for ent in Object.ALL:
         InputSystem.Apply(ent)
         AISystem.Apply(ent)
+        EffectSystem.Apply(ent)
         MovementSystem.Apply(ent)
         ColliderSystem.Apply(ent)
         DamageSystem.Apply(ent)
@@ -81,6 +83,7 @@ while run:
         HPSystem.Apply(ent)
         RenderSystem.Apply(ent)
 
+    print(player.GetComponent(EC.HP).value)
     # Cycle-end
     pygame.display.update()
     world.screen.fill(world.screen_color)

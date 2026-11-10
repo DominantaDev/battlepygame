@@ -26,5 +26,5 @@ class Lifetime(Component):
             last_pos: Vector2,
             speed: float
     ):
-        print(f"{(last_pos-first_pos).len/speed} секунд ибо speed={speed}, дистанция={(last_pos-first_pos).len}")
+        # print(f"{(last_pos-first_pos).len/speed} секунд ибо speed={speed}, дистанция={(last_pos-first_pos).len}")
         return Lifetime(((last_pos-first_pos).len/speed)*1000, parent)

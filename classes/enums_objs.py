@@ -4,8 +4,11 @@ from pygame import Vector2
 
 from classes.character import Character
 from classes.enemy import Enemy
-from classes.enums import ClassChar, ClassEnemy
+from classes.enum_components import EC
+from classes.enums import ClassChar, ClassEnemy, DamageType
 from classes.weapon import Weapon
+from components.damage import Damage
+from classes.effect import Effect
 from world import CEIL
 
 
@@ -58,7 +61,15 @@ class EnemyList(Enum):
         scale=Vector2(CEIL, CEIL),
         radius=1000,
         type_enemy=ClassEnemy.RANGE,
-        weapon=Weapon(
-            30, 10000, 30, 3000, 10000
-        )
+        weapon=Weapon(30, 10000, 30, 3000, 10000)
+    )
+
+
+class EffectsEnum(Enum):
+    BURNING = Effect(
+        "Burning",
+        lambda obj, force: obj.PinComponent(
+            Damage(force, DamageType.MAGIC, False)),
+        None,
+        False
     )
